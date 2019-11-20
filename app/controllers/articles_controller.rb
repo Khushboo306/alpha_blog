@@ -1,4 +1,8 @@
 class ArticlesController < ApplicationController
+    def index #to list articles route is localhost:3000/article
+      @articles=Article.all
+    end
+    
     def new
      @article=Article.new
     end
@@ -8,14 +12,34 @@ class ArticlesController < ApplicationController
      @article=Article.new(article_params)
      if @article.save
        flash[:notice]="Article was successfully created"
-       redirect_to_article_path(@article)
+       redirect_to article_path(@article)
      else
        render 'new' # or :new
+     end
     end
     
     def show
       @article = Article.find(params[:id])
     end
+    
+   #  Route for editing articles takes the form ->
+   #  /articles/:id/edit
+
+    def edit 
+     @article = Article.find(params[:id])
+    end
+
+    def update
+      @article =Article.find(params[:id])
+
+      if @article.update(article_params)
+         flash[:notice]="Articl was successfully updated"
+         redirect_to article_path(@article)
+      else
+          render 'edit'
+      end
+    end
+
     private
      def article_params
         params.require(:article).permit(:title, :description)
