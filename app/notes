@@ -1,0 +1,21 @@
+To deploy app to production ->
+
+- Ensure you committed your code to your git repo
+
+- Ensure your gemfile has sqlite3 in group dev and pg and rails_12factor in group production, if using Rails 5, then you only need gem 'pg', '~> 0.11' in group production (rails_12factor is not necessary)
+
+- Command to deploy to heroku: git push heroku master
+
+- Once deployed run the following to run your migration files in production: heroku run rake db:migrate, if using Rails 5, heroku run rails db:migrate
+
+Go to your-app-name.herokuapp.com and verify deploy
+
+To learn CSS go to:
+
+w3schools.com/css/default.asp
+
+To learn about bootstrap, go to:
+
+getbootstrap.com then select v3.3.7 from the dropdown, this is what we will be using in this course
+
+To get additional HTML and CSS help and build a site on the side as practice, go to https://learn.shayhowe.com/html-css/ and go through course 101 (free)
